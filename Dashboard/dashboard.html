@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Usuários cadastrados</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-style.css">
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</head>
+
+<body id="body">
+    <div id="overlay" class="overlay" style="display: none;">
+        <div class="modal"> 
+            <p id="mensagem"></p>
+            <button class="button-login" onclick="fecharOverlay()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="perfil" class="perfil">
+        <div class="perfil-lista">
+            <button class="perfil-button">Preferências</button>
+            <button class="perfil-button-sair" onclick="voltar()">Sair</button>
+        </div>
+    </div>
+
+    <header class="header-padrao">
+        <h1>Cadastro de Atletas</h1>
+        <button onclick="abrirPerfil()" class="perfil-usuario">
+            <img src="user-profile.svg">
+        </button>
+    </header>
+    <nav id="abas" class="abas">
+        <button id="btn-cadastrar" class="btn-aba" onclick="onCadastrarClick()">Cadastrar</button>
+        <button id="btn-listar" class="btn-aba" onclick="onListarClick()">Listar</button>
+    </nav>
+    <div id="container-lista" class="container">
+        <h1 class="subtitulo">Atletas Cadastrados</h1>
+        <table class="tabela" id="tabela-atletas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Data de Nascimento</th>
+                    <th>Cpf</th>
+                    <th>Modalidade</th>
+                    <th>Gênero</th>
+                    <th>Categoria</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>Tipo Sanguíneo</th>
+                    <th>Alergias</th>
+                    <th>Histórico</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-atletas-body">
+            </tbody>
+        </table>
+       
+    </div>
+    <form id="container-cadastro" class="container" onsubmit="cadastrarAtleta(event)">
+        <h1 class="titulo">Cadastrar Atleta</h1>
+        <h4 class="subtitulo">
+            Dados Pessoais
+        </h4>
+        <div class="grupoLabelInput">
+            <label for="input-nome-atleta">Nome Completo</label>
+            <input id="input-nome-atleta" placeholder="digite o nome completo" type="text" required>
+        </div>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-dtNascimento">Data Nascimento</label>
+                <input id="input-dtNascimento" placeholder="Data de Nascimento" type="date" required>
+            </div>
+
+        
+            <div class="grupoLabelInput">
+                <label for="input-nacionalidade">Nacionalidade</label>
+                <input id="input-nacionalidade" placeholder="Nacionalidade" type="text" required>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-cpf">CPF</label>
+                <input id="input-cpf" placeholder="CPF" type="text" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-modalidade">Modalidade</label>
+                <input id="input-modalidade" placeholder="Modalidade" type="text" required>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-genero">Gênero</label>
+                <input id="input-genero" placeholder="Gênero" type="text" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-categoria">Categoria</label>
+                <select class="input-default" id="input-categoria" required>
+                    <option disabled selected>Selecione a categoria</option>
+                    <option value="1">Sub-20</option>
+                    <option value="2">Sub-23</option>
+                    <option value="3">Sênior</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="subtitulo">Dados Médicos</h4>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-peso">Peso (Kg)</label>
+                <input id="input-peso" placeholder="Ex: 75" type="number" required>
+            </div>
+
+            <div class="grupoLabelInput">
+                <label for="input-altura">Altura</label>
+                <input id="input-altura" placeholder="Ex: 1.80" type="number" required>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="grupoLabelInput">
+                <label for="input-tipoSanguineo">Tipo Sanguíneo</label>
+                <select class="input-default" id="input-tipoSanguineo" required>
+                    <option value="" disabled selected>Selecione um tipo sanguíneo</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+        </div>
+        <div class="grupoLabelInput">
+            <label for="input-alergias">Alergias</label>
+            <input id="input-alergias" placeholder="Ex: Diporona, Loratadina, etc" type="text" required>
+        </div>
+        <div class="grupoLabelInput">
+            <label for="input-historico">Histórico Médico</label>
+            <input id="input-historico" placeholder="Ex: Cirurgia na clavícula, pedra nos rins" type="text" required>
+        </div>
+        <button class="button-login" type="submit">
+            Cadastrar
+        </button>
+    </form>
+
+</body>
+
+</html>

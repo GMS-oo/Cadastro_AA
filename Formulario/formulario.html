@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Simples</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="lado-foto"></div>
+
+        <div class="lado-form">
+            <h1>Entrar</h1>
+            <form id="form-cadastro" onsubmit="realizarLogin(event)">
+                <div class="grupo-input">
+                    <label for="nome">Nome:</label>
+                    <input id="nome" placeholder="Digite seu nome para acessar" type="text" required>
+                </div>
+                
+                <button id="btn-cadastrar" type="submit">
+                    Acessar
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

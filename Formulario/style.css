@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* O Body agora não centraliza mais o form, mas sim o container geral */
+body {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Lado Esquerdo com a Foto */
+.lado-foto {
+    flex: 1.5; /* Ocupa mais espaço */
+    background-image: url('boslonaro.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+/* Lado Direito onde seu Form vai brilhar */
+.lado-form {
+    flex: 1; /* Lado direito */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza seu form horizontalmente neste lado */
+    justify-content: center; /* Centraliza seu form verticalmente neste lado */
+    background-color: #fff; /* Fundo branco atrás do form */
+}
+
+/* --- SEU CÓDIGO ORIGINAL ABAIXO (MANTIDO) --- */
+
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    padding: 20px; /* Aumentei um pouco para respirar */
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: aliceblue;
+    box-shadow: 0px 15px 15px 15px rgb(55, 0, 255); /* Sua sombra perfeita */
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    width: 20rem;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(47, 0, 255);
+    background-color: rgba(255, 235, 205, 0.5);
+    transition: 1s;
+}
+
+.grupoLabelInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+button {
+    margin-top: 50px;
+    align-self: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: rgb(226, 226, 226);
+    background-color: rgb(76, 0, 252);
+}
+
+button:hover {
+    background-color: rgb(64, 0, 255);
+    color: white;
+    transition: 1s;
+}
+
+label {
+    font-weight: 700;
+    font-size: 12px;
+    padding-left: 5px;
+}
