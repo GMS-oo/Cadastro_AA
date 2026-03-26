@@ -1,14 +1,11 @@
-// 1. Inicia a lista de atletas (Corrigido para usar um único nome: 'listaAtletas')
 let listaAtletas = JSON.parse(localStorage.getItem('atletos_db')) || [];
 
-// 2. Função para Cadastrar o Atleta
 function cadastrarAtleta(event) {
-    event.preventDefault(); // Impede o recarregamento da página
+    event.preventDefault(); 
 
-    console.log("Tentando cadastrar..."); // Para você ver no F12 se a função chamou
+    console.log("Tentando cadastrar...");
 
     try {
-        // Criando o objeto com os IDs exatos do seu HTML
         const novoAtleta = {
             id: Date.now(),
             nome: document.getElementById('input-nome-atleta').value,
@@ -25,40 +22,33 @@ function cadastrarAtleta(event) {
             historico: document.getElementById('input-historico').value
         };
 
-        // Salva na lista global
         listaAtletas.push(novoAtleta);
-        
-        // Salva no banco local do navegador
         localStorage.setItem('atletos_db', JSON.stringify(listaAtletas));
 
         alert("Atleta " + novoAtleta.nome + " cadastrado com sucesso!");
         
-        // Limpa os campos
         event.target.reset();
-        
-        // Pula para a tela de listagem
         onListarClick();
 
     } catch (erro) {
         console.error("Erro ao salvar:", erro);
-        alert("Ops! Algo deu errado ao salvar. Verifique o console (F12).");
+        alert("Ops! Algo deu errado ao salvar.");
     }
 }
 
-// 3. Função para desenhar a tabela
 function renderizarTabela() {
     const corpoTabela = document.getElementById('tabela-atletas-body');
     
-    if (!corpoTabela) return; // Segurança caso o elemento não exista
+    if (!corpoTabela) return;
 
-    corpoTabela.innerHTML = ""; // Limpa antes de renderizar
+    corpoTabela.innerHTML = ""; 
 
     if (listaAtletas.length === 0) {
-        corpoTabela.innerHTML = "<tr><td colspan='12' style='text-align:center;'>Nenhum atleta cadastrado.</td></tr>";
+        corpoTabela.innerHTML = "<tr><td colspan='13' style='text-align:center;'>Nenhum atleta cadastrado.</td></tr>";
         return;
     }
 
-    listaAtletas.forEach((atleta) => {
+    listaAtletas.forEach((atleta, index) => {
         const linha = `
             <tr>
                 <td>${atleta.nome}</td>
@@ -73,13 +63,27 @@ function renderizarTabela() {
                 <td style="color: #a855f7; font-weight: bold;">${atleta.sangue}</td>
                 <td>${atleta.alergias}</td>
                 <td>${atleta.historico}</td>
+                <td>
+                    <button class="btn-excluir" onclick="excluirAtleta(${index})">Excluir</button>
+                </td>
             </tr>
         `;
         corpoTabela.innerHTML += linha;
     });
 }
 
-// 4. Funções de Alternância de Abas
+function excluirAtleta(index) {
+    const nomeAtleta = listaAtletas[index].nome;
+    
+    if (confirm(`Deseja realmente excluir o atleta ${nomeAtleta}?`)) {
+        listaAtletas.splice(index, 1);
+        
+        localStorage.setItem('atletos_db', JSON.stringify(listaAtletas));
+        
+        renderizarTabela();
+    }
+}
+
 function onCadastrarClick() {
     document.getElementById('container-cadastro').style.display = 'flex';
     document.getElementById('container-lista').style.display = 'none';
@@ -98,14 +102,12 @@ function onListarClick() {
     renderizarTabela(); 
 }
 
-// 5. Botão Sair
 function voltar() {
     if(confirm("Deseja sair do sistema?")) {
-        window.location.href = "index.html"; // Mude para o seu arquivo inicial
+        window.location.href = "index.html";
     }
 }
 
-// Inicialização
 window.onload = function() {
     onCadastrarClick();
 };
